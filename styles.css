@@ -78,9 +78,33 @@
   margin-bottom: 6px;
 }
 
+.converge-context-actions,
 .converge-context-btns {
   display: flex;
   gap: 4px;
+  align-items: center;
+}
+
+.converge-context-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.converge-context-btn:hover {
+  background: var(--background-modifier-hover);
+  color: #a855f7;
+}
+
+.converge-context-btn svg {
+  width: 14px;
+  height: 14px;
 }
 
 .converge-ctx-btn {
@@ -109,6 +133,186 @@
   color: var(--text-error);
 }
 
+/* Semantic Search Toggle Row */
+.converge-semantic-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-secondary);
+}
+
+.converge-semantic-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.converge-semantic-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.converge-toggle-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Toggle Switch */
+.converge-toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+
+.converge-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.converge-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-modifier-border);
+  transition: 0.2s;
+  border-radius: 20px;
+}
+
+.converge-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.converge-toggle-input:checked + .converge-toggle-slider {
+  background-color: #a855f7;
+}
+
+.converge-toggle-input:checked + .converge-toggle-slider:before {
+  transform: translateX(16px);
+}
+
+.converge-index-status {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 2px 6px;
+  background: var(--background-modifier-hover);
+  border-radius: 4px;
+}
+
+.converge-index-status.converge-index-ready {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+/* Semantic Results */
+.converge-semantic-results {
+  max-height: 150px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+
+.converge-semantic-results.converge-hidden {
+  display: none;
+}
+
+.converge-semantic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.converge-clear-link {
+  font-size: 11px;
+  color: #a855f7;
+  cursor: pointer;
+}
+
+.converge-clear-link:hover {
+  text-decoration: underline;
+}
+
+.converge-semantic-item {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  background: var(--background-secondary);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.converge-semantic-item:hover {
+  background: var(--background-modifier-hover);
+}
+
+.converge-semantic-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.converge-semantic-item-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a855f7;
+}
+
+.converge-semantic-item-lines {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.converge-semantic-item-preview {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.converge-semantic-item .converge-context-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.converge-searching,
+.converge-no-results,
+.converge-error {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 8px;
+  text-align: center;
+}
+
+.converge-error {
+  color: var(--text-error);
+}
+
 /* Chat Container */
 .converge-chat-container {
   flex: 1;
@@ -129,8 +333,8 @@
 
 .converge-message-user {
   align-self: flex-end;
-  background: var(--interactive-accent);
-  color: var(--text-on-accent);
+  background: #a855f7;
+  color: white;
 }
 
 .converge-message-assistant {
@@ -217,10 +421,10 @@
 }
 
 .converge-send-btn {
-  background: var(--interactive-accent);
-  color: var(--text-on-accent);
+  background: #a855f7;
+  color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -229,7 +433,7 @@
 }
 
 .converge-send-btn:hover {
-  background: var(--interactive-accent-hover);
+  background: #9333ea;
 }
 
 .converge-send-btn svg {
@@ -299,11 +503,29 @@
   }
 }
 
-/* Bottom Section (context + input) */
+/* Main Container */
+.converge-main-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Chat Mode Layout */
+.converge-chat-mode {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Bottom Section (context + semantic + input) */
 .converge-bottom-section {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 /* Empty State */
@@ -347,6 +569,20 @@
 .converge-features {
   text-align: left;
   max-width: 320px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.converge-feature {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.converge-feature strong {
+  color: #a855f7;
 }
 
 .converge-tagline {
@@ -609,7 +845,8 @@
    TABS & MODE SWITCHING
    ============================================================================ */
 
-.converge-tabs {
+.converge-tabs,
+.converge-tab-bar {
   display: flex;
   gap: 0;
   border-bottom: 1px solid var(--background-modifier-border);
@@ -627,6 +864,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  text-align: center;
 }
 
 .converge-tab:hover {
@@ -635,8 +873,8 @@
 }
 
 .converge-tab-active {
-  color: var(--text-normal);
-  border-bottom-color: var(--interactive-accent);
+  color: #a855f7;
+  border-bottom-color: #a855f7;
 }
 
 .converge-mode-container {
@@ -872,12 +1110,27 @@
   height: 16px;
 }
 
+/* Discover Welcome Container */
+.converge-discover-welcome {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
 /* Discover Content Container */
 .converge-discover-content {
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: hidden;
+  gap: 12px;
+}
+
+.converge-cta {
+  margin-top: 16px;
+  font-weight: 500;
+  color: #a855f7;
 }
 
 /* Summary Section */
@@ -893,6 +1146,15 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 6px;
+}
+
+.converge-summary-filename {
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .converge-summary-content {
@@ -921,13 +1183,21 @@
 }
 
 /* Similar Section Drop Zone */
+.converge-similar-section {
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 8px;
+  transition: all 0.2s ease;
+}
+
 .converge-similar-section.converge-drag-over {
-  background-color: var(--background-modifier-hover);
-  border-color: var(--interactive-accent);
+  background-color: rgba(168, 85, 247, 0.1);
+  border-color: #a855f7;
+  border-style: solid;
 }
 
 .converge-similar-section.converge-drag-over .converge-similar-list {
-  border-color: var(--interactive-accent);
+  border-color: #a855f7;
 }
 
 /* Chunk Indicator Badge */
@@ -950,6 +1220,22 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: 500px;
+}
+
+.converge-chunk-modal-score {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 12px 0;
+}
+
+.converge-chunks-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 8px;
 }
 
 .converge-chunk-modal-header {
@@ -987,13 +1273,29 @@
   background: var(--background-secondary);
   border: 1px solid var(--background-modifier-border);
   border-radius: 6px;
-  padding: 10px;
+  padding: 12px;
   cursor: pointer;
   transition: border-color 0.2s;
+  flex-shrink: 0;
 }
 
 .converge-chunk-item:hover {
   border-color: var(--interactive-accent);
+}
+
+.converge-chunk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.converge-chunk-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-normal);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .converge-chunk-item-header {
