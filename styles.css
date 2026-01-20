@@ -70,6 +70,45 @@
   color: var(--text-error);
 }
 
+/* Context Header and Buttons */
+.converge-context-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.converge-context-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.converge-ctx-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.converge-ctx-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.converge-ctx-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.converge-ctx-btn-clear:hover {
+  color: var(--text-error);
+}
+
 /* Chat Container */
 .converge-chat-container {
   flex: 1;
@@ -84,6 +123,8 @@
   padding: 8px 12px;
   border-radius: 8px;
   max-width: 90%;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 .converge-message-user {
@@ -100,6 +141,9 @@
 .converge-message-content {
   font-size: 13px;
   line-height: 1.5;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
 }
 
 .converge-message-content p {
@@ -150,32 +194,56 @@
   justify-content: flex-end;
 }
 
+.converge-icon-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.converge-icon-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.converge-icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
 .converge-send-btn {
   background: var(--interactive-accent);
   color: var(--text-on-accent);
   border: none;
-  padding: 6px 16px;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .converge-send-btn:hover {
   background: var(--interactive-accent-hover);
 }
 
-.converge-clear-btn {
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--background-modifier-border);
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
+.converge-send-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
-.converge-clear-btn:hover {
-  background: var(--background-modifier-hover);
+.converge-send-btn.converge-loading svg {
+  animation: converge-spin 1s linear infinite;
+}
+
+@keyframes converge-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Loading States */
@@ -244,12 +312,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
   height: 100%;
   gap: 12px;
 }
 
 .converge-logo {
-  width: 140px;
+  width: 200px;
   height: auto;
   color: var(--text-muted);
   opacity: 0.5;
@@ -275,6 +344,39 @@
   margin: 0;
 }
 
+.converge-features {
+  text-align: left;
+  max-width: 320px;
+}
+
+.converge-tagline {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.converge-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.converge-feature-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.converge-feature-list li:last-child {
+  border-bottom: none;
+}
+
+.converge-feature-list strong {
+  color: var(--text-normal);
+}
+
 /* Token Display */
 .converge-token-display {
   font-size: 11px;
@@ -292,22 +394,662 @@
   font-weight: 600;
 }
 
+/* Token Warning Banner */
+.converge-token-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 8px;
+  animation: converge-pulse 2s ease-in-out infinite;
+}
+
+.converge-token-warning-yellow {
+  background: rgba(224, 168, 0, 0.15);
+  border: 1px solid var(--text-warning, #e0a800);
+  color: var(--text-warning, #e0a800);
+}
+
+.converge-token-warning-red {
+  background: rgba(220, 53, 69, 0.15);
+  border: 1px solid var(--text-error);
+  color: var(--text-error);
+}
+
+.converge-warning-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.converge-warning-text {
+  flex: 1;
+}
+
+.converge-warning-text strong {
+  font-weight: 600;
+}
+
+@keyframes converge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
 /* Button Group */
 .converge-button-group {
   display: flex;
   gap: 8px;
 }
 
-.converge-export-btn {
+
+/* ============================================================================
+   SEMANTIC SEARCH STYLES
+   ============================================================================ */
+
+.converge-semantic-section {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 8px;
+  background: var(--background-secondary-alt);
+}
+
+.converge-semantic-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.converge-semantic-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.converge-index-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.converge-index-status {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.converge-status-warning {
+  color: var(--text-warning, #e0a800);
+}
+
+.converge-status-building {
+  color: var(--interactive-accent);
+  font-style: italic;
+}
+
+.converge-build-btn {
   background: transparent;
   color: var(--text-muted);
   border: 1px solid var(--background-modifier-border);
-  padding: 6px 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.converge-build-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+/* Toggle Switch */
+.converge-toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+
+.converge-toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.converge-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-modifier-border);
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.converge-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-muted);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.converge-toggle:checked + .converge-toggle-slider {
+  background-color: var(--interactive-accent);
+}
+
+.converge-toggle:checked + .converge-toggle-slider:before {
+  transform: translateX(16px);
+  background-color: var(--text-on-accent);
+}
+
+/* Semantic Results List */
+.converge-semantic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.converge-semantic-hint {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 4px 0;
+}
+
+.converge-semantic-item {
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.converge-semantic-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.converge-semantic-filename {
+  font-weight: 600;
+  color: var(--text-normal);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.converge-semantic-lines {
+  font-size: 10px;
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
+}
+
+.converge-semantic-preview {
+  color: var(--text-muted);
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ============================================================================
+   TABS & MODE SWITCHING
+   ============================================================================ */
+
+.converge-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+  margin-bottom: 8px;
+}
+
+.converge-tab {
+  flex: 1;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.converge-tab:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+.converge-tab-active {
+  color: var(--text-normal);
+  border-bottom-color: var(--interactive-accent);
+}
+
+.converge-mode-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.converge-hidden {
+  display: none !important;
+}
+
+/* ============================================================================
+   DISCOVER MODE STYLES
+   ============================================================================ */
+
+.converge-discover-active {
+  padding: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.converge-active-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-normal);
+  padding: 4px 0;
+}
+
+.converge-file-icon {
+  font-size: 16px;
+}
+
+.converge-no-file {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Threshold Section */
+.converge-threshold-section {
+  padding: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.converge-threshold-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.converge-threshold-value {
+  font-weight: 600;
+  color: var(--text-normal);
+  font-family: var(--font-monospace);
+}
+
+.converge-threshold-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--background-modifier-border);
+  border-radius: 3px;
+  outline: none;
+}
+
+.converge-threshold-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--interactive-accent);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.converge-threshold-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--interactive-accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* Similar Notes Section */
+.converge-similar-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.converge-similar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.converge-similar-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.converge-similar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: var(--background-primary);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.converge-similar-item:hover {
+  background: var(--background-modifier-hover);
+}
+
+.converge-similar-checkbox {
+  flex-shrink: 0;
+}
+
+.converge-similar-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--text-normal);
+}
+
+.converge-similar-name:hover {
+  color: var(--interactive-accent);
+  text-decoration: underline;
+}
+
+.converge-similar-score {
+  font-family: var(--font-monospace);
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--background-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.converge-similar-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.converge-similar-remove:hover {
+  color: var(--text-error);
+  background: var(--background-modifier-hover);
+}
+
+.converge-similar-remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Discover Hints & Warnings */
+.converge-discover-hint {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.converge-discover-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  color: var(--text-warning, #e0a800);
+  font-size: 12px;
+}
+
+/* Discover Actions */
+.converge-discover-actions {
+  padding-top: 8px;
+}
+
+.converge-hub-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.converge-hub-btn:hover {
+  background: var(--interactive-accent-hover);
+}
+
+.converge-hub-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Discover Content Container */
+.converge-discover-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Summary Section */
+.converge-summary-section {
+  padding: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.converge-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.converge-summary-content {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.converge-summary-hint {
+  font-style: italic;
+  color: var(--text-faint);
+}
+
+.converge-summary-loading {
+  font-style: italic;
+  color: var(--interactive-accent);
+}
+
+.converge-summary-error {
+  color: var(--text-error);
+}
+
+.converge-summary-text {
+  margin: 0;
+  color: var(--text-normal);
+}
+
+/* Similar Section Drop Zone */
+.converge-similar-section.converge-drag-over {
+  background-color: var(--background-modifier-hover);
+  border-color: var(--interactive-accent);
+}
+
+.converge-similar-section.converge-drag-over .converge-similar-list {
+  border-color: var(--interactive-accent);
+}
+
+/* Chunk Indicator Badge */
+.converge-chunk-indicator {
+  font-size: 10px;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  padding: 1px 5px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ============================================================================
+   CHUNK PREVIEW MODAL
+   ============================================================================ */
+
+.converge-chunk-modal {
+  padding: 16px;
+  max-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.converge-chunk-modal-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.converge-chunk-modal-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+}
+
+.converge-chunk-count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.converge-chunk-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.converge-chunk-empty {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.converge-chunk-item {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.converge-chunk-item:hover {
+  border-color: var(--interactive-accent);
+}
+
+.converge-chunk-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.converge-chunk-lines {
+  font-size: 11px;
+  font-family: var(--font-monospace);
+  color: var(--text-muted);
+  background: var(--background-primary);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.converge-chunk-score {
+  font-size: 11px;
+  font-family: var(--font-monospace);
+  color: var(--text-on-accent);
+  background: var(--interactive-accent);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.converge-chunk-preview {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-normal);
+}
+
+.converge-chunk-preview p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.converge-chunk-modal-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--background-modifier-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.converge-chunk-open-btn {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border: none;
+  padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
 }
 
-.converge-export-btn:hover {
-  background: var(--background-modifier-hover);
+.converge-chunk-open-btn:hover {
+  background: var(--interactive-accent-hover);
 }

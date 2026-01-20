@@ -1,9 +1,9 @@
 {
   "id": "converge-obsidian",
   "name": "Converge",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "minAppVersion": "1.0.0",
-  "description": "Chat with an LLM using your vault notes as context. Connects to OpenAI-compatible endpoints.",
+  "description": "Chat with your notes using a local LLM. Features semantic search, note discovery, and hub note creation.",
   "author": "Yeo Yong Kiat",
   "isDesktopOnly": true
 }
